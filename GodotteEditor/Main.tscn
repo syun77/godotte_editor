@@ -1,15 +1,22 @@
-[gd_scene load_steps=12 format=3 uid="uid://dcr1am36dife"]
+[gd_scene load_steps=19 format=3 uid="uid://dska5n33dn78a"]
 
-[ext_resource type="Texture2D" uid="uid://0uedy8aoimn5" path="res://assets/images/godotte/body.png" id="1_o71ur"]
 [ext_resource type="Script" path="res://Main.gd" id="1_or17u"]
 [ext_resource type="Theme" uid="uid://dc4sitk6sh6s1" path="res://assets/default_theme.tres" id="1_vf10m"]
-[ext_resource type="Texture2D" uid="uid://bws240ow6v44q" path="res://assets/images/godotte/head.png" id="2_60jum"]
+[ext_resource type="Texture2D" uid="uid://0uedy8aoimn5" path="res://assets/images/godotte/base/body.png" id="2_ibj0y"]
 [ext_resource type="Texture2D" uid="uid://bhin7bu2a6j7x" path="res://assets/images/godotte/eyes/open/white.png" id="3_el3pu"]
 [ext_resource type="Texture2D" uid="uid://hdmkcdd0qm0t" path="res://assets/images/godotte/mouse/laugh.png" id="3_i2wgv"]
+[ext_resource type="Texture2D" uid="uid://bws240ow6v44q" path="res://assets/images/godotte/base/head.png" id="3_uyccp"]
 [ext_resource type="Texture2D" uid="uid://cdahwmwgs64fw" path="res://assets/images/godotte/eyes/open/mask.png" id="4_txeb6"]
 [ext_resource type="Texture2D" uid="uid://dqdhocj845kl5" path="res://assets/images/godotte/eyes/open/eyes.png" id="5_xl76m"]
 [ext_resource type="Texture2D" uid="uid://bode2i0wipv8u" path="res://assets/images/godotte/eyebrows/normal.png" id="6_jcry5"]
-[ext_resource type="Texture2D" uid="uid://cwrqdstak8fxt" path="res://assets/images/godotte/hand_left.png" id="8_fwu6m"]
+[ext_resource type="Texture2D" uid="uid://cwrqdstak8fxt" path="res://assets/images/godotte/base/hand_left.png" id="9_ru6ou"]
+[ext_resource type="Texture2D" uid="uid://cgcshmk8gh1nc" path="res://assets/images/godotte/eyebrows/angry.png" id="11_3itgq"]
+[ext_resource type="Texture2D" uid="uid://46uov26s0y7" path="res://assets/images/godotte/eyebrows/loosen.png" id="12_a6oot"]
+[ext_resource type="Texture2D" uid="uid://bep73dsjfqgl8" path="res://assets/images/godotte/eyebrows/sad.png" id="13_ybopo"]
+[ext_resource type="Texture2D" uid="uid://cbhg5tecd2woi" path="res://assets/images/godotte/mouse/small.png" id="14_45ryd"]
+[ext_resource type="Texture2D" uid="uid://cfdxkhhprwb14" path="res://assets/images/godotte/mouse/angry.png" id="15_rk43o"]
+[ext_resource type="Texture2D" uid="uid://drl3yvvj73ho2" path="res://assets/images/godotte/mouse/closed.png" id="16_6s1nq"]
+[ext_resource type="Texture2D" uid="uid://bpwfgta77if0e" path="res://assets/images/godotte/mouse/trouble.png" id="17_t0ds7"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_wuwje"]
 
@@ -31,17 +38,19 @@ stretch = true
 [node name="Vp" type="SubViewport" parent="Godotte"]
 disable_3d = true
 transparent_bg = true
+handle_input_locally = false
 size = Vector2i(1240, 1080)
+render_target_update_mode = 4
 
 [node name="Body" type="Sprite2D" parent="Godotte/Vp"]
 position = Vector2(501.6, 586.4)
 scale = Vector2(0.8, 0.8)
-texture = ExtResource("1_o71ur")
+texture = ExtResource("2_ibj0y")
 
 [node name="Head" type="Sprite2D" parent="Godotte/Vp"]
 position = Vector2(456, 624)
 scale = Vector2(0.8, 0.8)
-texture = ExtResource("2_60jum")
+texture = ExtResource("3_uyccp")
 offset = Vector2(-30, -310)
 
 [node name="Eyes" type="Node2D" parent="Godotte/Vp/Head"]
@@ -81,7 +90,7 @@ texture = ExtResource("3_i2wgv")
 [node name="HandLeft" type="Sprite2D" parent="Godotte/Vp"]
 position = Vector2(806.4, 816)
 scale = Vector2(0.8, 0.8)
-texture = ExtResource("8_fwu6m")
+texture = ExtResource("9_ru6ou")
 
 [node name="UI" type="CanvasLayer" parent="."]
 
@@ -138,4 +147,61 @@ theme = ExtResource("1_vf10m")
 button_pressed = true
 text = "Show Left-Hand"
 
+[node name="OptionEyebrows" type="OptionButton" parent="UI"]
+offset_left = 1280.0
+offset_top = 288.0
+offset_right = 1753.0
+offset_bottom = 367.0
+theme = ExtResource("1_vf10m")
+item_count = 4
+selected = 0
+popup/item_0/text = "Normal"
+popup/item_0/icon = ExtResource("6_jcry5")
+popup/item_0/id = 0
+popup/item_1/text = "Angry"
+popup/item_1/icon = ExtResource("11_3itgq")
+popup/item_1/id = 1
+popup/item_2/text = "Loosen"
+popup/item_2/icon = ExtResource("12_a6oot")
+popup/item_2/id = 2
+popup/item_3/text = "Sad"
+popup/item_3/icon = ExtResource("13_ybopo")
+popup/item_3/id = 3
+
+[node name="SliderEyebrows" type="VSlider" parent="UI"]
+offset_left = 1768.0
+offset_top = 288.0
+offset_right = 1832.0
+offset_bottom = 608.0
+theme = ExtResource("1_vf10m")
+min_value = -32.0
+max_value = 32.0
+
+[node name="OptionMouse" type="OptionButton" parent="UI"]
+offset_left = 1384.0
+offset_top = 456.0
+offset_right = 1642.0
+offset_bottom = 548.0
+theme = ExtResource("1_vf10m")
+item_count = 5
+selected = 0
+popup/item_0/text = "Laugh"
+popup/item_0/icon = ExtResource("3_i2wgv")
+popup/item_0/id = 0
+popup/item_1/text = "Small"
+popup/item_1/icon = ExtResource("14_45ryd")
+popup/item_1/id = 1
+popup/item_2/text = "Angry"
+popup/item_2/icon = ExtResource("15_rk43o")
+popup/item_2/id = 2
+popup/item_3/text = "Closed"
+popup/item_3/icon = ExtResource("16_6s1nq")
+popup/item_3/id = 3
+popup/item_4/text = "Trouble"
+popup/item_4/icon = ExtResource("17_t0ds7")
+popup/item_4/id = 4
+
 [connection signal="pressed" from="UI/ButtonSave" to="." method="_on_button_save_pressed"]
+[connection signal="item_selected" from="UI/OptionEyebrows" to="." method="_on_option_eyebrows_item_selected"]
+[connection signal="value_changed" from="UI/SliderEyebrows" to="." method="_on_slider_eyebrows_value_changed"]
+[connection signal="item_selected" from="UI/OptionMouse" to="." method="_on_option_mouse_item_selected"]

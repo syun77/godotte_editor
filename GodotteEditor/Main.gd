@@ -5,6 +5,10 @@ extends Control
 @onready var _eye = $Godotte/Vp/Head/Eyes/Normal/Mask/Eyes
 ## 頭.
 @onready var _head = $Godotte/Vp/Head
+## 眉毛.
+@onready var _eyebrows = $Godotte/Vp/Head/Eyebrows/Normal
+## 口.
+@onready var _mouse = $Godotte/Vp/Head/Mouses/Normal
 ## 左手.
 @onready var _left_hand = $Godotte/Vp/HandLeft
 
@@ -82,3 +86,14 @@ func _save_png() -> void:
 func _on_button_save_pressed() -> void:
 	_save_png()
 
+## 眉毛パーツ変更.
+func _on_option_eyebrows_item_selected(index: int) -> void:
+	_eyebrows.texture = $UI/OptionEyebrows.get_item_icon(index)
+
+## 口パーツ変更.
+func _on_option_mouse_item_selected(index: int) -> void:
+	_mouse.texture = $UI/OptionMouse.get_item_icon(index)
+
+## 眉毛の位置移動.
+func _on_slider_eyebrows_value_changed(value: float) -> void:
+	_eyebrows.offset.y = value * -1 # 逆方向.

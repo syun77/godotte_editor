@@ -111,3 +111,8 @@ func _on_option_eyes_outside_item_selected(index: int) -> void:
 	if name == "Closed":
 		# 閉じている目だけは例外処理.
 		_eye_eyes.visible = false
+
+
+func _on_option_eyes_inside_item_selected(index: int) -> void:
+	var option = $UI/OptionEyesInside
+	_eye_eyes.texture = option.get_item_icon(index)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://bi7yd37qpke48"]
+[gd_scene load_steps=25 format=3 uid="uid://bi7yd37qpke48"]
 
 [ext_resource type="Script" path="res://Main.gd" id="1_or17u"]
 [ext_resource type="Theme" uid="uid://dc4sitk6sh6s1" path="res://assets/default_theme.tres" id="1_vf10m"]
@@ -19,6 +19,10 @@
 [ext_resource type="Texture2D" uid="uid://bpwfgta77if0e" path="res://assets/images/godotte/mouse/trouble.png" id="17_t0ds7"]
 [ext_resource type="Texture2D" uid="uid://d2ld3h3h3s6su" path="res://assets/images/godotte/eyes/slant/white.png" id="18_f2rvg"]
 [ext_resource type="Texture2D" uid="uid://ccetmbdgxumv3" path="res://assets/images/godotte/eyes/closed/white.png" id="18_qmyoe"]
+[ext_resource type="Texture2D" uid="uid://fusqbgaxtr3y" path="res://assets/images/godotte/eyes/slant/eyes.png" id="20_boreu"]
+[ext_resource type="Texture2D" uid="uid://blwe3fveq28ul" path="res://assets/images/godotte/eyes/closed/mask.png" id="20_omqv3"]
+[ext_resource type="Texture2D" uid="uid://clggn01u7jusw" path="res://assets/images/godotte/eyes/eyes_point.png" id="22_x8xhi"]
+[ext_resource type="Texture2D" uid="uid://dtcs4fwibkvgk" path="res://assets/images/godotte/eyes/eyes_point2.png" id="23_ntor1"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_dpwks"]
 blend_mode = 3
@@ -177,12 +181,12 @@ min_value = -32.0
 max_value = 32.0
 
 [node name="OptionMouse" type="OptionButton" parent="UI"]
-offset_left = 1384.0
-offset_top = 456.0
-offset_right = 1642.0
-offset_bottom = 548.0
+offset_left = 1280.0
+offset_top = 384.0
+offset_right = 1538.0
+offset_bottom = 476.0
 theme = ExtResource("1_vf10m")
-item_count = 5
+item_count = 6
 selected = 0
 popup/item_0/text = "Laugh"
 popup/item_0/icon = ExtResource("3_i2wgv")
@@ -199,14 +203,17 @@ popup/item_3/id = 3
 popup/item_4/text = "Trouble"
 popup/item_4/icon = ExtResource("17_t0ds7")
 popup/item_4/id = 4
+popup/item_5/text = "None"
+popup/item_5/icon = ExtResource("20_omqv3")
+popup/item_5/id = 5
 
 [node name="OptionEyesOutside" type="OptionButton" parent="UI"]
-offset_left = 1312.0
-offset_top = 680.0
-offset_right = 1326.0
-offset_bottom = 700.0
+offset_left = 1280.0
+offset_top = 496.0
+offset_right = 1750.0
+offset_bottom = 679.0
 theme = ExtResource("1_vf10m")
-item_count = 3
+item_count = 4
 selected = 0
 popup/item_0/text = "Open"
 popup/item_0/icon = ExtResource("3_el3pu")
@@ -217,9 +224,34 @@ popup/item_1/id = 1
 popup/item_2/text = "Slant"
 popup/item_2/icon = ExtResource("18_f2rvg")
 popup/item_2/id = 2
+popup/item_3/text = "None"
+popup/item_3/icon = ExtResource("20_omqv3")
+popup/item_3/id = 3
+
+[node name="OptionEyesInside" type="OptionButton" parent="UI"]
+offset_left = 1288.0
+offset_top = 696.0
+offset_right = 1758.0
+offset_bottom = 879.0
+theme = ExtResource("1_vf10m")
+item_count = 4
+selected = 0
+popup/item_0/text = "Normal1"
+popup/item_0/icon = ExtResource("5_xl76m")
+popup/item_0/id = 0
+popup/item_1/text = "Normal2"
+popup/item_1/icon = ExtResource("20_boreu")
+popup/item_1/id = 1
+popup/item_2/text = "Point"
+popup/item_2/icon = ExtResource("22_x8xhi")
+popup/item_2/id = 2
+popup/item_3/text = "Point2"
+popup/item_3/icon = ExtResource("23_ntor1")
+popup/item_3/id = 3
 
 [connection signal="pressed" from="UI/ButtonSave" to="." method="_on_button_save_pressed"]
 [connection signal="item_selected" from="UI/OptionEyebrows" to="." method="_on_option_eyebrows_item_selected"]
 [connection signal="value_changed" from="UI/SliderEyebrows" to="." method="_on_slider_eyebrows_value_changed"]
 [connection signal="item_selected" from="UI/OptionMouse" to="." method="_on_option_mouse_item_selected"]
 [connection signal="item_selected" from="UI/OptionEyesOutside" to="." method="_on_option_eyes_outside_item_selected"]
+[connection signal="item_selected" from="UI/OptionEyesInside" to="." method="_on_option_eyes_inside_item_selected"]

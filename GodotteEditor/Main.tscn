@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://dska5n33dn78a"]
+[gd_scene load_steps=21 format=3 uid="uid://bi7yd37qpke48"]
 
 [ext_resource type="Script" path="res://Main.gd" id="1_or17u"]
 [ext_resource type="Theme" uid="uid://dc4sitk6sh6s1" path="res://assets/default_theme.tres" id="1_vf10m"]
@@ -17,8 +17,11 @@
 [ext_resource type="Texture2D" uid="uid://cfdxkhhprwb14" path="res://assets/images/godotte/mouse/angry.png" id="15_rk43o"]
 [ext_resource type="Texture2D" uid="uid://drl3yvvj73ho2" path="res://assets/images/godotte/mouse/closed.png" id="16_6s1nq"]
 [ext_resource type="Texture2D" uid="uid://bpwfgta77if0e" path="res://assets/images/godotte/mouse/trouble.png" id="17_t0ds7"]
+[ext_resource type="Texture2D" uid="uid://d2ld3h3h3s6su" path="res://assets/images/godotte/eyes/slant/white.png" id="18_f2rvg"]
+[ext_resource type="Texture2D" uid="uid://ccetmbdgxumv3" path="res://assets/images/godotte/eyes/closed/white.png" id="18_qmyoe"]
 
-[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_wuwje"]
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_dpwks"]
+blend_mode = 3
 
 [node name="Main" type="Control"]
 layout_mode = 3
@@ -59,20 +62,16 @@ position = Vector2(75, -199)
 [node name="Normal" type="Node2D" parent="Godotte/Vp/Head/Eyes"]
 
 [node name="White" type="Sprite2D" parent="Godotte/Vp/Head/Eyes/Normal"]
+scale = Vector2(1, 1)
 texture = ExtResource("3_el3pu")
-
-[node name="Mask" type="Sprite2D" parent="Godotte/Vp/Head/Eyes/Normal/White"]
-position = Vector2(1, 9)
-texture = ExtResource("4_txeb6")
 
 [node name="Mask" type="Sprite2D" parent="Godotte/Vp/Head/Eyes/Normal"]
 clip_children = 2
-material = SubResource("CanvasItemMaterial_wuwje")
-position = Vector2(1, 10)
+material = SubResource("CanvasItemMaterial_dpwks")
 texture = ExtResource("4_txeb6")
 
 [node name="Eyes" type="Sprite2D" parent="Godotte/Vp/Head/Eyes/Normal/Mask"]
-position = Vector2(-12, -4)
+scale = Vector2(1, 1)
 texture = ExtResource("5_xl76m")
 
 [node name="Eyebrows" type="Node2D" parent="Godotte/Vp/Head"]
@@ -172,7 +171,7 @@ popup/item_3/id = 3
 offset_left = 1768.0
 offset_top = 288.0
 offset_right = 1832.0
-offset_bottom = 608.0
+offset_bottom = 408.0
 theme = ExtResource("1_vf10m")
 min_value = -32.0
 max_value = 32.0
@@ -201,7 +200,26 @@ popup/item_4/text = "Trouble"
 popup/item_4/icon = ExtResource("17_t0ds7")
 popup/item_4/id = 4
 
+[node name="OptionEyesOutside" type="OptionButton" parent="UI"]
+offset_left = 1312.0
+offset_top = 680.0
+offset_right = 1326.0
+offset_bottom = 700.0
+theme = ExtResource("1_vf10m")
+item_count = 3
+selected = 0
+popup/item_0/text = "Open"
+popup/item_0/icon = ExtResource("3_el3pu")
+popup/item_0/id = 0
+popup/item_1/text = "Closed"
+popup/item_1/icon = ExtResource("18_qmyoe")
+popup/item_1/id = 1
+popup/item_2/text = "Slant"
+popup/item_2/icon = ExtResource("18_f2rvg")
+popup/item_2/id = 2
+
 [connection signal="pressed" from="UI/ButtonSave" to="." method="_on_button_save_pressed"]
 [connection signal="item_selected" from="UI/OptionEyebrows" to="." method="_on_option_eyebrows_item_selected"]
 [connection signal="value_changed" from="UI/SliderEyebrows" to="." method="_on_slider_eyebrows_value_changed"]
 [connection signal="item_selected" from="UI/OptionMouse" to="." method="_on_option_mouse_item_selected"]
+[connection signal="item_selected" from="UI/OptionEyesOutside" to="." method="_on_option_eyes_outside_item_selected"]

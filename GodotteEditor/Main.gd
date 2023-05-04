@@ -1,8 +1,6 @@
 extends Control
 
 # 各パーツ.
-## 瞳孔.
-@onready var _eye = $Godotte/Vp/Head/Eyes/Normal/Mask/Eyes
 ## 頭.
 @onready var _head = $Godotte/Vp/Head
 ## 眉毛.
@@ -11,6 +9,10 @@ extends Control
 @onready var _mouse = $Godotte/Vp/Head/Mouses/Normal
 ## 左手.
 @onready var _left_hand = $Godotte/Vp/HandLeft
+## 目.
+@onready var _eye_white = $Godotte/Vp/Head/Eyes/Normal/White
+@onready var _eye_mask = $Godotte/Vp/Head/Eyes/Normal/Mask
+@onready var _eye_eyes = $Godotte/Vp/Head/Eyes/Normal/Mask/Eyes
 
 # 視線.
 @onready var _chk_eye_sight = $UI/CheckBtnEyeSight
@@ -36,14 +38,14 @@ func _process(delta: float) -> void:
 func _update_eye_sight():	
 	if Input.is_action_pressed("right-click"): # 右ドラッグ中のみ有効.
 		var mouse = get_viewport().get_mouse_position()
-		var d:Vector2 = mouse - _eye.global_position
+		var d:Vector2 = mouse - _eye_eyes.global_position
 		var length = d.length()
 		var rot = d.angle()
 		var distance = 32 * length / 640
 		if distance > 32:
 			distance = 32
-		_eye.offset.x = distance * cos(rot)
-		_eye.offset.y = distance * sin(rot)
+		_eye_eyes.offset.x = distance * cos(rot)
+		_eye_eyes.offset.y = distance * sin(rot)
 	else:
 		_chk_eye_label.visible = true
 
@@ -52,7 +54,8 @@ func _update_neck_rotation():
 	if Input.is_action_pressed("right-click"): # 右ドラッグ中のみ有効.
 		_chk_neck_label.visible = false
 		var mouse = get_viewport().get_mouse_position()
-		var d:Vector2 = mouse - _eye.global_position
+		var d:Vector2 = mouse - _eye_eyes.global_position # 回転し続けるバグが面白いのでひとまずこっち.
+		#var d:Vector2 = mouse - _head.global_position
 		var rot = d.angle()
 		_head.rotation = rot
 
@@ -97,3 +100,14 @@ func _on_option_mouse_item_selected(index: int) -> void:
 ## 眉毛の位置移動.
 func _on_slider_eyebrows_value_changed(value: float) -> void:
 	_eyebrows.offset.y = value * -1 # 逆方向.
+
+
+func _on_option_eyes_outside_item_selected(index: int) -> void:
+	var option = $UI/OptionEyesOutside
+	_eye_white.texture = option.get_item_icon(index)
+	var name = option.get_item_text(index)
+	_eye_mask.texture = load("res://assets/images/godotte/eyes/%s/mask.png"%name.to_lower())
+	_eye_eyes.visible = true
+	if name == "Closed":
+		# 閉じている目だけは例外処理.
+		_eye_eyes.visible = false

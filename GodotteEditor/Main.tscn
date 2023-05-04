@@ -1,0 +1,141 @@
+[gd_scene load_steps=12 format=3 uid="uid://dcr1am36dife"]
+
+[ext_resource type="Texture2D" uid="uid://0uedy8aoimn5" path="res://assets/images/godotte/body.png" id="1_o71ur"]
+[ext_resource type="Script" path="res://Main.gd" id="1_or17u"]
+[ext_resource type="Theme" uid="uid://dc4sitk6sh6s1" path="res://assets/default_theme.tres" id="1_vf10m"]
+[ext_resource type="Texture2D" uid="uid://bws240ow6v44q" path="res://assets/images/godotte/head.png" id="2_60jum"]
+[ext_resource type="Texture2D" uid="uid://bhin7bu2a6j7x" path="res://assets/images/godotte/eyes/open/white.png" id="3_el3pu"]
+[ext_resource type="Texture2D" uid="uid://hdmkcdd0qm0t" path="res://assets/images/godotte/mouse/laugh.png" id="3_i2wgv"]
+[ext_resource type="Texture2D" uid="uid://cdahwmwgs64fw" path="res://assets/images/godotte/eyes/open/mask.png" id="4_txeb6"]
+[ext_resource type="Texture2D" uid="uid://dqdhocj845kl5" path="res://assets/images/godotte/eyes/open/eyes.png" id="5_xl76m"]
+[ext_resource type="Texture2D" uid="uid://bode2i0wipv8u" path="res://assets/images/godotte/eyebrows/normal.png" id="6_jcry5"]
+[ext_resource type="Texture2D" uid="uid://cwrqdstak8fxt" path="res://assets/images/godotte/hand_left.png" id="8_fwu6m"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_wuwje"]
+
+[node name="Main" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_or17u")
+
+[node name="Godotte" type="SubViewportContainer" parent="."]
+layout_mode = 0
+offset_right = 1240.0
+offset_bottom = 1080.0
+stretch = true
+
+[node name="Vp" type="SubViewport" parent="Godotte"]
+disable_3d = true
+transparent_bg = true
+size = Vector2i(1240, 1080)
+
+[node name="Body" type="Sprite2D" parent="Godotte/Vp"]
+position = Vector2(501.6, 586.4)
+scale = Vector2(0.8, 0.8)
+texture = ExtResource("1_o71ur")
+
+[node name="Head" type="Sprite2D" parent="Godotte/Vp"]
+position = Vector2(456, 624)
+scale = Vector2(0.8, 0.8)
+texture = ExtResource("2_60jum")
+offset = Vector2(-30, -310)
+
+[node name="Eyes" type="Node2D" parent="Godotte/Vp/Head"]
+position = Vector2(75, -199)
+
+[node name="Normal" type="Node2D" parent="Godotte/Vp/Head/Eyes"]
+
+[node name="White" type="Sprite2D" parent="Godotte/Vp/Head/Eyes/Normal"]
+texture = ExtResource("3_el3pu")
+
+[node name="Mask" type="Sprite2D" parent="Godotte/Vp/Head/Eyes/Normal/White"]
+position = Vector2(1, 9)
+texture = ExtResource("4_txeb6")
+
+[node name="Mask" type="Sprite2D" parent="Godotte/Vp/Head/Eyes/Normal"]
+clip_children = 2
+material = SubResource("CanvasItemMaterial_wuwje")
+position = Vector2(1, 10)
+texture = ExtResource("4_txeb6")
+
+[node name="Eyes" type="Sprite2D" parent="Godotte/Vp/Head/Eyes/Normal/Mask"]
+position = Vector2(-12, -4)
+texture = ExtResource("5_xl76m")
+
+[node name="Eyebrows" type="Node2D" parent="Godotte/Vp/Head"]
+position = Vector2(60, -300)
+
+[node name="Normal" type="Sprite2D" parent="Godotte/Vp/Head/Eyebrows"]
+texture = ExtResource("6_jcry5")
+
+[node name="Mouses" type="Node2D" parent="Godotte/Vp/Head"]
+position = Vector2(82, -3)
+
+[node name="Normal" type="Sprite2D" parent="Godotte/Vp/Head/Mouses"]
+texture = ExtResource("3_i2wgv")
+
+[node name="HandLeft" type="Sprite2D" parent="Godotte/Vp"]
+position = Vector2(806.4, 816)
+scale = Vector2(0.8, 0.8)
+texture = ExtResource("8_fwu6m")
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="ButtonSave" type="Button" parent="UI"]
+offset_left = 1640.0
+offset_top = 952.0
+offset_right = 1858.0
+offset_bottom = 1028.0
+theme = ExtResource("1_vf10m")
+text = "Save PNG"
+
+[node name="CheckBtnEyeSight" type="CheckButton" parent="UI"]
+offset_left = 1576.0
+offset_top = 56.0
+offset_right = 1856.0
+offset_bottom = 132.0
+theme = ExtResource("1_vf10m")
+text = "Ling of sight"
+
+[node name="Label" type="Label" parent="UI/CheckBtnEyeSight"]
+layout_mode = 0
+offset_left = -304.0
+offset_top = 16.0
+offset_right = -26.0
+offset_bottom = 65.0
+theme = ExtResource("1_vf10m")
+theme_override_colors/font_color = Color(1, 1, 0, 1)
+text = "R-CLICK to active!"
+
+[node name="CheckBtnNeckRotation" type="CheckButton" parent="UI"]
+offset_left = 1576.0
+offset_top = 128.0
+offset_right = 1856.0
+offset_bottom = 204.0
+theme = ExtResource("1_vf10m")
+text = "Neck Rotation"
+
+[node name="Label" type="Label" parent="UI/CheckBtnNeckRotation"]
+layout_mode = 0
+offset_left = -304.0
+offset_top = 16.0
+offset_right = -26.0
+offset_bottom = 65.0
+theme = ExtResource("1_vf10m")
+theme_override_colors/font_color = Color(1, 1, 0, 1)
+text = "R-CLICK to active!"
+
+[node name="CheckBtnLeftHand" type="CheckButton" parent="UI"]
+offset_left = 1576.0
+offset_top = 208.0
+offset_right = 1868.0
+offset_bottom = 262.0
+theme = ExtResource("1_vf10m")
+button_pressed = true
+text = "Show Left-Hand"
+
+[connection signal="pressed" from="UI/ButtonSave" to="." method="_on_button_save_pressed"]

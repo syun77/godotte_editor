@@ -3,6 +3,9 @@
 これは Godot Engineのマスコットキャラである Godotte ちゃんの画像を作成するツールです。
 Godotに関する記事や動画を作るときのサムネイルとして使えるかもしれません。
 
+## ダウンロード
+* [x64 - Win64.zip](Bin/Win64.zip)
+
 ## 使い方
 各種パーツを選びます。眉毛だけ位置が調整できます。
 ![preview](Resources/preview.gif)

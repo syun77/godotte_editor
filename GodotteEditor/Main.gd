@@ -54,8 +54,8 @@ func _update_neck_rotation():
 	if Input.is_action_pressed("right-click"): # 右ドラッグ中のみ有効.
 		_chk_neck_label.visible = false
 		var mouse = get_viewport().get_mouse_position()
-		var d:Vector2 = mouse - _eye_eyes.global_position # 回転し続けるバグが面白いのでひとまずこっち.
-		#var d:Vector2 = mouse - _head.global_position
+		#var d:Vector2 = mouse - _eye_eyes.global_position # 回転し続けるバグが面白いのでひとまずこっち.
+		var d:Vector2 = mouse - _head.global_position
 		var rot = d.angle()
 		_head.rotation = rot
 
